@@ -1,0 +1,5 @@
+[default]
+path = "/home/rafaelk/Wallpapers/Catppuccin-Rice"
+apply-shadow = false
+sorting = "descending"
+duration = "30m"
