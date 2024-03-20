@@ -2,23 +2,23 @@
 {
     "layer": "top", // Waybar at top layer
     // "position": "left", // Waybar position (top|bottom|left|right)
-    "height": 37, // Waybar height (to be removed for auto height)
+    "height": 40, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     "spacing": 7, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
         "hyprland/workspaces",
+        "hyprland/window"
     ],
     "modules-center": [
-        "hyprland/window"
+        "clock",
     ],
     "modules-right": [
         "pulseaudio",
         "network",
-        "cpu",
-        "memory",
+        //"cpu",
+        //"memory",
         "battery",
-        "clock",
         "tray"
     ],
     // Modules configuration
@@ -32,10 +32,16 @@
          "warp-on-scroll": false,
          "format": "{icon}",
          "format-icons": {
+             "1": "",
+             "2": "",
+             "3": "",
+             "4": "",
+             "5": "",
+             "6": "",
+             "default": "",
              "urgent": "",
              "focused": ".",
-             "default": ""
-         }
+         },
     },
     "keyboard-state": {
         "numlock": true,
@@ -59,7 +65,8 @@
     },
     "clock": {
         // "timezone": "America/New_York",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "tooltip-format": "<big>{:%Y %B}</big>
+<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%Y-%m-%d}"
     },
     "cpu": {
@@ -102,7 +109,8 @@
     },
     "power-profiles-daemon": {
       "format": "{icon}",
-      "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+      "tooltip-format": "Power profile: {profile}
+Driver: {driver}",
       "tooltip": true,
       "format-icons": {
         "default": "",
@@ -152,3 +160,4 @@
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     }
 }
+
