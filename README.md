@@ -1,7 +1,7 @@
 # dotfiles-hyprland
 Clean, and good-looking pastel rice (Catppuccin Mocha)
 
-![Rice Screenshot](https://github.com/Okuber/dotfiles-hyprland/blob/main/1710773140-wayshot.png?raw=true)
+![Rice Screenshot](https://github.com/Okuber/dotfiles-hyprland/blob/main/1710936536-wayshot.png?raw=true)
 
 Dependencies:
 ```
