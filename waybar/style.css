@@ -45,6 +45,19 @@ button {
 
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 
+#custom-weather {
+    background-color: #11111b;
+    padding: 0 5px;
+    border-radius: 10px;
+}
+
+#custom-updates {
+    color: #11111b;
+    background-color: #cdd6f4;
+    padding: 0 10px;
+    border-radius: 10px;
+}
+
 #power {
     background: #11111b;
     border-radius: 10px;
@@ -162,14 +175,22 @@ button:hover {
 }
 
 #hardware {
-    background-color: #11111b;
-    color: #3dd64f;
+    color: #11111b;
+    background-color: #cdd6f4;
     border-radius: 10px;
 }
 
-#clock {
+#cpu {
     color: #11111b;
-    background-color: #cdd6f4;
+}
+
+#memory {
+    color: #11111b;
+}
+
+#clock {
+    background-color: #11111b;
+    color: #cdd6f4;
     border-radius: 10px;
 }
 
@@ -234,8 +255,8 @@ label:focus {
 }
 
 #network {
-    background-color: #11111b;
-    color: #cdd6f4;
+    color: #11111b;
+    background-color: #cdd6f4;
     border-radius: 10px;
 }
 

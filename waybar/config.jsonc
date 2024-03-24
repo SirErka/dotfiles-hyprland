@@ -18,8 +18,10 @@
     ],
     "modules-right": [
         "battery",
+        "custom/weather",
         "group/hardware",
         "clock",
+        "custom/updates",
         "tray"
     ],
     // Modules configuration
@@ -40,17 +42,28 @@
     //     }
     // },
     
+    "custom/weather": {
+        "format": "{} °",
+        "tooltip": true,
+        "interval": 3600,
+        "exec": "wttrbar",
+        "return-type": "json"
+    },
+
+    "custom/updates": {
+        "format": "{} {icon}",
+        "return-type": "json",
+            "format-icons": {
+           "has-updates": "󱍷",
+           "updated": "󰂪"
+        },
+        "exec-if": "which waybar-module-pacman-updates",
+        "exec": "waybar-module-pacman-updates  --interval-seconds 5 --network-interval-seconds 300"
+    },
+
     "hyprland/window": {
         "max-length": 30,
         "separate-outputs": true,
-    },
-
-    "custom/pacman": {
-	    "format": "{}  ",
-	    "interval": "once",
-	    "exec": "pacman_packages",
-	    "on-click": "update-system",
-	    "signal": 8
     },
 
     "custom/poweroff": {
@@ -113,7 +126,7 @@
 	    "format": "{icon}",
 	    "format-icons": {
 		    "1": "",
-		    "2": "",
+		    "2": "",
 	    	"3": "",
     		"4": "",
 		    "5": "",
@@ -166,7 +179,7 @@
     },
     "clock": {
         // "timezone": "America/New_York",
-        "tooltip-format": "<big>{:%d}</big>\n<tt><small>{calendar}</small></tt>",
+        "tooltip-format": "<big>Day {:%d}</big>\n<tt><small>{calendar}</small></tt>",
         "format" : "{:%I:%M %p }",
         "format-alt": "{:%d %B %Y }"
     },
@@ -196,8 +209,8 @@
             "warning": 30,
             "critical": 15
         },
-        "format": "{icon}",
-        "format-full": "{icon}",
+        "format": "{capacity}% {icon}",
+        "format-full": "100% {icon}",
         "format-charging": "{capacity}% ",
         "format-plugged": "{capacity}% ",
         "format-alt": "{time} {icon}",

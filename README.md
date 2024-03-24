@@ -6,6 +6,7 @@ Clean, and good-looking pastel rice (Catppuccin Mocha)
 Dependencies:
 ```
 neofetch
+swayosd
 cava
 waybar
 hyprland
