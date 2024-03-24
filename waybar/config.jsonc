@@ -1,48 +1,95 @@
 // -*- mode: jsonc -*-
 {
     "layer": "top", // Waybar at top layer
-    // "position": "left", // Waybar position (top|bottom|left|right)
-    "height": 40, // Waybar height (to be removed for auto height)
+    "position": "top", // Waybar position (top|bottom|left|right)
+    "height": 30, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
-    "spacing": 7, // Gaps between modules (4px)
+    "margin": "20 20 0 20",
+    "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
+        "group/power",
         "hyprland/workspaces",
-        "hyprland/window"
+        "pulseaudio",
+        "custom/spotify"
     ],
     "modules-center": [
-        "clock",
+        "hyprland/window"
     ],
     "modules-right": [
-        "pulseaudio",
-        "network",
-        //"cpu",
-        //"memory",
         "battery",
+        "group/hardware",
+        "clock",
         "tray"
     ],
     // Modules configuration
+    // "sway/workspaces": {
+    //     "disable-scroll": true,
+    //     "all-outputs": true,
+    //     "warp-on-scroll": false,
+    //     "format": "{name}: {icon}",
+    //     "format-icons": {
+    //         "1": "",
+    //         "2": "",
+    //         "3": "",
+    //         "4": "",
+    //         "5": "",
+    //         "urgent": "",
+    //         "focused": "",
+    //         "default": ""
+    //     }
+    // },
+    
     "hyprland/window": {
-	 "max-length": 40
+        "max-length": 30,
+        "separate-outputs": true,
     },
 
-    "hyprland/workspaces": {
-         "disable-scroll": true,
-         "all-outputs": true,
-         "warp-on-scroll": false,
-         "format": "{icon}",
-         "format-icons": {
-             "1": "",
-             "2": "",
-             "3": "",
-             "4": "",
-             "5": "",
-             "6": "",
-             "default": "",
-             "urgent": "",
-             "focused": ".",
-         },
+    "custom/pacman": {
+	    "format": "{}  ",
+	    "interval": "once",
+	    "exec": "pacman_packages",
+	    "on-click": "update-system",
+	    "signal": 8
     },
+
+    "custom/poweroff": {
+        "format": "",
+        "tooltip": true,
+        "tooltip-format": "Hello",
+        "on-click": "systemctl poweroff"
+    },
+    "custom/reboot": {
+        "format": "",
+        "tooltip": true,
+        "tooltip-format": "Hello",
+        "on-click": "systemctl reboot"
+    },
+    "custom/logout": {
+        "format": "",
+        "tooltip": true,
+        "tooltip-format": "Hello",
+        "on-click": "pkill Hyprland"
+    },
+
+    "group/hardware": {
+		"orientation": "horizontal",
+		"modules": [
+            "network",
+			"cpu",
+			"memory",
+		]
+	},
+
+    "group/power": {
+        "orientation": "horizontal",
+        "modules": [
+            "custom/poweroff",
+            "custom/reboot",
+            "custom/logout",
+        ]
+    },
+
     "keyboard-state": {
         "numlock": true,
         "capslock": true,
@@ -51,6 +98,60 @@
             "locked": "",
             "unlocked": ""
         }
+    },
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "sway/scratchpad": {
+        "format": "{icon} {count}",
+        "show-empty": false,
+        "format-icons": ["", ""],
+        "tooltip": true,
+        "tooltip-format": "{app}: {title}"
+    },
+    "hyprland/workspaces": {
+	    "format": "{icon}",
+	    "format-icons": {
+		    "1": "",
+		    "2": "",
+	    	"3": "",
+    		"4": "",
+		    "5": "",
+	    },
+        "persistent-workspaces": {
+            "1": "*",
+            "2": "*",
+            "3": "*",
+            "4": "*",
+            "5": "*"
+        },
+	    "sort-by-number": true
+    },
+    "mpd": {
+        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
+        "format-disconnected": "Disconnected ",
+        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+        "unknown-tag": "N/A",
+        "interval": 5,
+        "consume-icons": {
+            "on": " "
+        },
+        "random-icons": {
+            "off": "<span color=\"#f53c3c\"></span> ",
+            "on": " "
+        },
+        "repeat-icons": {
+            "on": " "
+        },
+        "single-icons": {
+            "on": "1 "
+        },
+        "state-icons": {
+            "paused": "",
+            "playing": ""
+        },
+        "tooltip-format": "MPD (connected)",
+        "tooltip-format-disconnected": "MPD (disconnected)"
     },
     "idle_inhibitor": {
         "format": "{icon}",
@@ -65,9 +166,9 @@
     },
     "clock": {
         // "timezone": "America/New_York",
-        "tooltip-format": "<big>{:%Y %B}</big>
-<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+        "tooltip-format": "<big>{:%d}</big>\n<tt><small>{calendar}</small></tt>",
+        "format" : "{:%I:%M %p }",
+        "format-alt": "{:%d %B %Y }"
     },
     "cpu": {
         "format": "{usage}% ",
@@ -95,8 +196,8 @@
             "warning": 30,
             "critical": 15
         },
-        "format": "{capacity}% {icon}",
-        "format-full": "{capacity}% {icon}",
+        "format": "{icon}",
+        "format-full": "{icon}",
         "format-charging": "{capacity}% ",
         "format-plugged": "{capacity}% ",
         "format-alt": "{time} {icon}",
@@ -109,8 +210,7 @@
     },
     "power-profiles-daemon": {
       "format": "{icon}",
-      "tooltip-format": "Power profile: {profile}
-Driver: {driver}",
+      "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
       "tooltip": true,
       "format-icons": {
         "default": "",
@@ -121,7 +221,7 @@ Driver: {driver}",
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-wifi": "{signalStrength}% ",
         "format-ethernet": "{ipaddr}/{cidr} ",
         "tooltip-format": "{ifname} via {gwaddr} ",
         "format-linked": "{ifname} (No IP) ",
@@ -147,17 +247,17 @@ Driver: {driver}",
         },
         "on-click": "pavucontrol"
     },
-    "custom/media": {
+    "custom/spotify": {
         "format": "{icon} {}",
+        "escape": true,
         "return-type": "json",
         "max-length": 40,
-        "format-icons": {
-            "spotify": "",
-            "default": "🎜"
-        },
-        "escape": true,
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+        "on-click": "playerctl -p spotify play-pause",
+        "on-click-right": "killall spotify",
+        "smooth-scrolling-threshold": 5, // This value was tested using a trackpad, it should be lowered if using a mouse.
+        "on-scroll-up" : "playerctl -p spotify next",
+        "on-scroll-down" : "playerctl -p spotify previous",
+        "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null", // Script in resources/custom_modules folder
+        "exec-if": "pgrep spotify"
     }
 }
-
