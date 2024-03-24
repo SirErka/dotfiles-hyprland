@@ -10,12 +10,12 @@ cava
 waybar
 hyprland
 swww
-hypridle (you'll probably be fine without this if you changed a few lines of the hyprland config)
+hypridle (you'll probably be fine without this if you change a few lines of the hyprland config)
 kitty
 wofi
 ```
 
-TO-DO:
+TODOS:
 - ~~Add keybinds for screenshots (I'm too lazy)~~ (done)
 - Actually have a functioning lock screen
 - A little polishing here and there
